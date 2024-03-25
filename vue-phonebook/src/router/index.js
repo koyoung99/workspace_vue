@@ -1,16 +1,22 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import listView from '../views/listView.vue'
-import modifyFormView from '../views/modifyFormView.vue'
-
+import writeFormView from '../views/writeFormView.vue'
+import modifyFormView from '@/views/modifyFormView.vue'
 const routes = [
   {
     path: '/list',
-    name: '/listView',
+    name: '/list',
     component: listView
-  },{
-    path: '/modifyform',
+  },
+  {
+    path: '/write',
+    name: '/writeform',
+    component: writeFormView
+  },
+  {
+    path: '/modify/:no',
     name: '/modifyform',
-    component:modifyFormView
+    component: modifyFormView
   }
 ]
 
