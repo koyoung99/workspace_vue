@@ -1,48 +1,77 @@
 <template>
-    <div>
-        <h1>전화번호부</h1>
+    <h1>전화번호부</h1>
 
-        <h2>등록폼</h2>
+    <h2>등록폼</h2>
 
-        <p>
-            전화번호를 등록하려면<br> 아래 항목을 기입하고 "등록" 버튼을 클릭하세요
-        </p>
+    <p>
+        전화번호를 등록하려면<br> 아래 항목을 기입하고 "등록" 버튼을 클릭하세요
+    </p>
 
-        <form action="" method="">
-            <div>
-                <label>이름(name)</label>
-                <input type="text" name="name" value="">
-            </div>
+    <form v-on:submit.prevent="addPerson" action="" method="">
+        <div>
+            <label>이름(name)</label>
+            <input type="text" name="name" v-model="personVo.name">
+        </div>
 
-            <div>
-                <label>핸드폰(hp)</label>
-                <input type="text" name="hp" value="">
-            </div>
+        <div>
+            <label>핸드폰(hp)</label>
+            <input type="text" name="hp" v-model="personVo.hp">
+        </div>
 
-            <div>
-                <label>회사(company)</label>
-                <input type="text" name="company" value="">
-            </div>
+        <div>
+            <label>회사(company)</label>
+            <input type="text" name="company" v-model="personVo.company">
+        </div>
 
-            <button type="submit">등록</button>
-        </form>
+        <button type="submit">등록</button>
+    </form>
 
-        <br>
-        <br>
-        <a href="">리스트 이동</a>
-    </div>
+    <br>
+    <br>
+    <router-link to="/list">리스트 이동</router-link>
 </template>
+
+
 <script>
+import axios from 'axios';
+
 export default {
-    name: "writeForm",
+    name: "writeFormView",
     components: {},
     data() {
         return {
-
+            personVo: {
+                personId: "",
+                name: "",
+                hp: "",
+                company: ""
+            },
         };
     },
-    method: {}
-};
+    methods: {
+        addPerson() {
+            console.log("저장");
+            axios({
+                method: 'post', // put, post, delete
+                url: 'http://localhost:9001/api/write',
+                headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                // params: guestbookVo, //get방식 파라미터로 값이 전달
+                data: this.personVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
 
+                responseType: 'json' //수신타입
+            }).then(response => {
+                console.log(response); //수신데이타
+
+            }).catch(error => {
+                console.log(error);
+            });
+
+            this.$router.push("/list");
+        }
+    },
+    created() { }
+};
 </script>
+
+
 <style></style>

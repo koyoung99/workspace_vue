@@ -2,35 +2,7 @@
 
     <div id="wrap">
 
-        <div id="header" class="clearfix">
-            <h1>
-                <a href="">MySite</a>
-            </h1>
-
-
-            <ul v-if="this.$store.state.authUser != null">
-                <li>{{ this.$store.state.authUser.name }} 님 안녕하세요^^</li>
-                <li><button v-on:click="logout" type="button" class="btn_s">로그아웃</button></li>
-                <li><a href="" class="btn_s">회원정보수정</a></li>
-            </ul>
-
-            <ul v-if="this.$store.state.authUser == null">
-                <li><a href="" class="btn_s">로그인</a></li>
-                <li><a href="" class="btn_s">회원가입</a></li>
-            </ul>
-
-        </div>
-        <!-- //header -->
-
-        <div id="nav">
-            <ul class="clearfix">
-                <li><a href="">입사지원서</a></li>
-                <li><a href="">게시판</a></li>
-                <li><a href="">갤러리</a></li>
-                <li><a href="">방명록</a></li>
-            </ul>
-        </div>
-        <!-- //nav -->
+        <AppHeader />
 
         <div id="container" class="clearfix">
             <div id="aside">
@@ -93,75 +65,78 @@
         </div>
         <!-- //container  -->
 
-        <div id="footer">
-            Copyright ⓒ 2020 황일영. All right reserved
-        </div>
-        <!-- //footer -->
+        <AppFooter />
 
     </div>
     <!-- //wrap -->
 </template>
+
 <script>
-import "@/assets/css/user.css";
+import "@/assets/css/user.css"
 import axios from 'axios';
+import AppHeader from "@/components/AppHeader.vue"
+import AppFooter from "@/components/AppFooter.vue"
+
 
 export default {
     name: "LoginFormView",
-    components: {},
+    components: {
+        AppHeader,
+        AppFooter
+    },
     data() {
         return {
             userVo: {
-                id: "aaa",
-                password: "123",
+                id: "",
+                password: ""
             }
-
         };
     },
     methods: {
         login() {
             console.log("로그인");
-
             axios({
-                method: 'post',  //put 수정,post 전달,delete, get 받아올때
+                method: 'post', //put, post, delete                   
                 url: 'http://localhost:9000/api/users/login',
                 headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
-                //params: userVo, //get방식 파라미터로 값이 전달
+                //params: guestbookVo, //get방식 파라미터로 값이 전달
                 data: this.userVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
 
                 responseType: 'json' //수신타입
             }).then(response => {
                 console.log(response); //수신데이타
-                console.log(response.data);
 
-                // 로그인사용자 정보
-                let authUser = response.data;
+                if (response.data.result == "success") {
 
-                // token 응답문서의 헤더에 있음
-                // "Authorization Bearer"
-                const token = response.headers.authorization.split(" ")[1];
+                    //로그인사용자 정보
+                    let authUser = response.data.apiData;
 
-                // vue저장
-                this.$store.commit("setAuthUser", authUser);
-                this.$store.commit("setToken", token);
+                    // token 응답문서의 헤더에 있음    
+                    //"Authorization Bearer fdjafdjaslfdjalfjda.ajfdkfjdlsafd.fdjksfjdal"                
+                    const token = response.headers.authorization.split(" ")[1];
 
-                console.log(authUser);
-                console.log(token);
+                    //vuex저장
+                    this.$store.commit("setAuthUser", authUser);
+                    this.$store.commit("setToken", token);
 
-                this.$router.push("/");
+                    console.log(authUser);
+                    console.log(token);
 
+                    this.$router.push("/");
 
-
+                } else {
+                    console.log(response.data.message);
+                    alert("아이디 패스워드를 확인하세요");
+                }
 
             }).catch(error => {
                 console.log(error);
             });
-        }, logout() {
-            console.log("로그아웃");
-            this.$store.commit("setAuthUser",null);
-            this.$store.commit("token",null);
+
+
         }
 
-    }
+    },
 };
 </script>
 <style></style>
