@@ -8,6 +8,7 @@ import JoinFormView from '@/views/user/JoinFormView.vue'
 import JoinOkView from '@/views/user/JoinOkView.vue'
 import addListView from '@/views/guestbook/addListView.vue'
 import deleteFormView from '@/views/guestbook/deleteFormView.vue'
+import listView from '@/views/board/listView.vue'
 
 
 const routes = [
@@ -47,6 +48,10 @@ const routes = [
     path:'/guest/addList',
     name:'/guest/addList',
     component: addListView
+  },{
+    path:'/board/list',
+    name:'/board/list',
+    component:listView
   }
 ]
 
