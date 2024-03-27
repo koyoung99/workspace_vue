@@ -32,10 +32,10 @@
                 <div id="file">
 
                     <div>
-                        <img id="resultImg" src="">
+                        <img id="resultImg" v-bind:src="`http://localhost:9000/upload/${this.$route.query.saveName}`">
                     </div>
                     <p>
-                        <a id="btnUpload" href="">다시 업로드 하기</a>
+                        <router-link to="/attach/form" id="btnUpload" >다시 업로드 하기</router-link>
                     </p>
 
                 </div>
