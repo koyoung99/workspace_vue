@@ -8,7 +8,7 @@
         아래 항목을 기입하고 "수정" 버튼을 클릭하세요
     </p>
 
-    <form action="" method="">
+    <form v-on:submit.prevent="personModify" action="" method="">
         <div>
             <label>이름(name)</label>
             <input type="text" name="name" v-model="personVo.name">
@@ -74,16 +74,18 @@ export default {
             console.log("수정");
 
             axios({
-                method: 'get',  //put,post,delete
+                method: 'put',  //put,post,delete
                 url: 'http://localhost:9001/api/modify',
                 headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
                 //params: guestbookVo, //get방식 파라미터로 값이 전달
-                //data: guestbookVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
+                data: this.personVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
 
                 responseType: 'json' //수신타입
             }).then(response => {
                 console.log(response.data); //수신데이타
                 this.personVo = response.data;
+
+                this.$router.push("/list");
 
             }).catch(error => {
                 console.log(error);
