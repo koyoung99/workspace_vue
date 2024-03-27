@@ -50,7 +50,7 @@
                             <tbody v-bind:key="i" v-for="(boardVo, i) in bList">
                                 <tr>
                                     <td>{{ boardVo.no }}</td>
-                                    <td class="text-left"><a href="#">boardVo.title</a></td>
+                                    <td class="text-left"><a href="#">{{boardVo.title}}</a></td>
                                     <td>{{ boardVo.name }}</td>
                                     <td>{{ boardVo.hit }}</td>
                                     <td>{{ boardVo.regDate }}</td>
