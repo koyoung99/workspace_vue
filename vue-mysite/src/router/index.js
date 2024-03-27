@@ -4,6 +4,11 @@ import LoginFormView from '@/views/user/LoginFormView.vue'
 import ModifyFormView from '@/views/user/ModifyFormView.vue'
 import AttachFormView from '@/views/attach/AttachFormView.vue'
 import AttachResultView from '@/views/attach/AttachResultView.vue'
+import JoinFormView from '@/views/user/JoinFormView.vue'
+import JoinOkView from '@/views/user/JoinOkView.vue'
+import addListView from '@/views/guestbook/addListView.vue'
+import deleteFormView from '@/views/guestbook/deleteFormView.vue'
+
 
 const routes = [
   {
@@ -19,6 +24,10 @@ const routes = [
     name:'/user/modifyform',
     component: ModifyFormView
   },{
+    path:'/user/joinform',
+    name:'/user/joinform',
+    component: JoinFormView
+  },{
     path:'/attach/form',
     name:'/attach/form',
     component: AttachFormView
@@ -26,6 +35,18 @@ const routes = [
     path:'/attach/result',
     name:'/attach/result',
     component: AttachResultView
+  },{
+    path:'/user/joinok',
+    name:'/user/joinok',
+    component: JoinOkView
+  },{
+    path:'/guest/deleteform/:no',
+    name:'/guest/deleteform',
+    component: deleteFormView
+  },{
+    path:'/guest/addList',
+    name:'/guest/addList',
+    component: addListView
   }
 ]
 

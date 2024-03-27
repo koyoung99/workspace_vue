@@ -13,7 +13,7 @@
 
         <ul v-if="this.$store.state.authUser == null">
             <li><router-link class="btn_s" to="/user/loginform">로그인</router-link></li>
-            <li><router-link class="btn_s" to="">회원가입</router-link></li>
+            <li><router-link class="btn_s" to="/user/joinform">회원가입</router-link></li>
         </ul>
 
     </div>
@@ -24,7 +24,7 @@
             <li><a href="">입사지원서</a></li>
             <li><a href="">게시판</a></li>
             <li><a href="">갤러리</a></li>
-            <li><a href="">방명록</a></li>
+            <li><router-link to="/guest/addList">방명록</router-link></li>
         </ul>
     </div>
     <!-- //nav -->
