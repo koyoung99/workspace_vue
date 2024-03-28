@@ -61,6 +61,13 @@
 	font-size: 14px;
 	font-weight: bold;
 }
+/* 삭제버튼 */
+#dbtn{
+	background-color: transparent;
+	border:none;
+	cursor: pointer;
+}
+
 
 /* 글쓰기 버튼 */
 #board #list #btn_write {

@@ -9,7 +9,9 @@ import JoinOkView from '@/views/user/JoinOkView.vue'
 import addListView from '@/views/guestbook/addListView.vue'
 import deleteFormView from '@/views/guestbook/deleteFormView.vue'
 import listView from '@/views/board/listView.vue'
-
+import readView from '@/views/board/readView.vue'
+import writeForm from '@/views/board/writeFormView.vue'
+import galleryView from '@/views/gallery/galleryView.vue'
 
 const routes = [
   {
@@ -52,6 +54,22 @@ const routes = [
     path:'/board/list',
     name:'/board/list',
     component:listView
+  },{
+    path:'/board/read/:no',
+    name:'/board/read',
+    component:readView
+  },{
+    path:'/board/writeform',
+    name:'/board/writeform',
+    component:writeForm
+  },{
+    path:'/board/modifyform/:no',
+    name:'/board/modifyform',
+    component:ModifyFormView
+  },{
+    path:'/gallery/list',
+    name:'/gallery/list',
+    component:galleryView
   }
 ]
 

@@ -8,13 +8,13 @@ export default createStore({
         };
     },
     mutations: {
-        setAuthUser(state, payload){
+        setAuthUser(state, payload) {
             state.authUser = payload;
         },
-        setToken(state, payload){
+        setToken(state, payload) {
             state.token = payload;
         },
-        setAuthName(state, payload){
+        setAuthName(state, payload) {
             state.authUser.name = payload;
         }
 
